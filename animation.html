@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: 0;
+    }
+    #skill_section h1 {
+      margin: 30px;
+      text-align: center;
+    }
+    .container {
+      width: 60%;
+      margin: 20px auto;
+      margin-bottom: 20px;
+    }
+    .progress {
+      width: 100%;
+      height: 18px;
+      margin-top: 10px;
+      background-color: gray;
+      border-radius: 10px;
+    }
+    .progress .progress_bar {
+      width: 0%;
+      opacity: 0;
+      height: 100%;
+      background-color: brown;
+      position: relative;
+      border-radius: 10px;
+      transition: all 0.5s;
+    }
+    .progress_bar span {
+      color: wheat;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .image_section {
+      background: url("image1.jpg") no-repeat center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1,
+    a {
+      color: rgb(20, 19, 16);
+    }
+  </style>
+  <body>
+    <div class="image_section">
+      <h1>Welcome To Ruhul Amin</h1>
+      <a href="">Click Me</a>
+    </div>
+    <div id="skill_section">
+      <h1>Skill</h1>
+      <div class="container">
+        <p>HTML</p>
+        <div class="progress">
+          <div class="progress_bar" data-progress="60">
+            <span>60%</span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p>CSS</p>
+        <div class="progress">
+          <div class="progress_bar" data-progress="80">
+            <span>80%</span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p>JavaScript</p>
+        <div class="progress">
+          <div class="progress_bar" data-progress="70">
+            <span>70%</span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <p>ReactJS</p>
+        <div class="progress">
+          <div class="progress_bar" data-progress="50">
+            <span>50%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const skill_section = document.getElementById("skill_section");
+      const progressBar = document.querySelectorAll(".progress_bar");
+
+      function showProgress() {
+        progressBar.forEach((element) => {
+          const dataValue = element.dataset.progress;
+          element.style.opacity = 1;
+          element.style.width = `${dataValue}%`;
+        });
+      }
+      function hideProgress() {
+        progressBar.forEach((element) => {
+          element.style.opacity = 0;
+          element.style.width = 0;
+        });
+      }
+
+      window.addEventListener("scroll", () => {
+        const sectionPos = skill_section.getBoundingClientRect().top;
+        const screenPos = window.innerHeight;
+        if (sectionPos < screenPos) {
+          showProgress();
+        } else {
+          hideProgress();
+        }
+      });
+    </script>
+  </body>
+</html>
